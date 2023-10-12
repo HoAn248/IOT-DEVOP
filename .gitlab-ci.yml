@@ -14,8 +14,9 @@ build-job:
   stage: build
   script:
     - echo "Bắt đầu quá trình xây dựng..."
-    - cd .\back-end-docker          # Di chuyển vào thư mục "backend"    
+    - cd back-end-docker          # Di chuyển vào thư mục "backend"    
     - npm install         # Cài đặt các module trong thư mục "backend"
+    - npm install express
     - echo "Cài đặt hoàn thành."
     - echo "Biên dịch TypeScript (nếu có)..."    
     - echo "Biên dịch hoàn thành."
@@ -26,7 +27,7 @@ test-job:
   stage: test
   script:
     - echo "Bắt đầu quá trình kiểm tra..."    
-    - cd test  # Di chuyển vào thư mục "backend"    
+    - cd back-end-docker  # Di chuyển vào thư mục "backend"    
     - npm install
     - npx mocha test
     # Thêm các lệnh kiểm tra ở đây
@@ -36,10 +37,9 @@ deploy-job:
   stage: deploy
   script:
     - echo "Bắt đầu quá trình triển khai..."
-    - cd .\back-end-docker  # Navigate to the backend directory (assuming backend is the backend folder)
+    - cd back-end-docker  # Navigate to the backend directory (assuming backend is the backend folder)
     - npm install  # Install backend dependencies
     # Optionally, you can include the following to display the deployment URL
     - echo "Ứng dụng đã được triển khai tại"
     - echo "Triển khai hoàn thành."
-
 
